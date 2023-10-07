@@ -1,90 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment1._4
+namespace Assignment_1._3._1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string option = "yes";
-            while (option == "Yes" || option == "yes" || option =="y")
+            Console.WriteLine("Please enter if you would like to find the Area for 1. Triangle 2. Square 3. Rectangle");
+                string shape = (Console.ReadLine());
+
+            //string shape1 = (Console.ReadLine());
+                //int bas=Int32.Parse(Console.ReadLine());
+               // int height=Int32.Parse(Console.ReadLine());
+                if (shape == "1" || shape =="Triangle" || shape =="triangle")
+            {   
+                Console.WriteLine("What is the base?");
+                int baseLength=Int32.Parse(Console.ReadLine());
+                Console.WriteLine("What is the height?");
+                int height = Int32.Parse(Console.ReadLine());
+                float result = TriangleArea( baseLength, height);
+                Console.WriteLine($"The area of the triangle is: {result}");
+                
+               
+            }
+                else if (shape=="2" || shape=="Square" || shape == "square")
             {
-                Point P1 = new Point();
-            Point P2 = new Point();
-            Console.WriteLine("Enter X-Axis for Point 1");
-            P1.X=Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Y-Axis for Point 1");
-            P1.Y=Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Enter X-Axis for Point 2");
-            P2.X=Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Y-Axis for Point 2");
-            P2.Y=Int32.Parse(Console.ReadLine());
-
-                if (P1.X < P2.X)
-                {
-                    if (P1.X < P2.X && P1.Y < P2.Y)
-                    {
-                        Console.WriteLine("Point 1 is below and to the left of Point 2");
-                    }
-                    else if (P1.X < P2.X && P1.Y > P2.Y)
-                    {
-                        Console.WriteLine("Point 1 is above and to the left of Point 2 ");
-                    }
-                }
-                if (P1.X == P2.X)
-                {
-                    if (P1.X == P2.X && P1.Y > P2.Y)
-                    {
-                        Console.WriteLine("Point 1 is above Point 2 and they share the same X-axis");
-                    }
-                    else if (P1.X == P2.X && P1.Y < P2.Y)
-                    {
-                        Console.WriteLine("Point 1 is below Point 2 and they share the same X-axis");
-                    }
-                }
-                if (P1.X > P2.X)
-                {
-                    if (P1.X > P2.X && P1.Y > P2.Y)
-                    {
-                        Console.WriteLine("Point 1 is above and to the right of point 2");
-                    }
-                    else if (P1.X > P2.X && P1.Y < P2.Y)
-                    {
-                        Console.WriteLine("Point 1 is above and to the left of Point 2");
-
-                    }
-                   
-                }
-                if (P1.Y == P2.Y)
-                {
-                    if (P1.Y == P2.Y && P1.X > P2.X)
-                    {
-                        Console.WriteLine("Point 1 is to the right of Point 2 and they share the same Y-axis");
-                    }
-                    else if (P1.Y == P2.Y && P1.X < P2.X)
-                    {
-                        Console.WriteLine("Point 1 is to the left of Point 2 and they share the same Y-axis");
-                    }
-                }
-                if (P1.X == P2.X && P1.Y == P2.Y)
-                {
-                    Console.WriteLine("Point 1 and Point 2 are the same point!");
-                }
-
-                Console.WriteLine("Would you like to try again? (Yes or No)");
-                option = (Console.ReadLine());
-                if (option == "no"  || option =="No") 
-                {
-                    Console.WriteLine("Goodbye!");
-                    Console.ReadKey();
-                }
+                Console.WriteLine("What is the length of a side?");
+                int side=Int32.Parse(Console.ReadLine());
+                float result = SquareArea(side);
+                Console.WriteLine($"The area of the square is: {result}");
+            }
+                else if (shape=="3" || shape=="Rectangle" || shape == "rectangle")
+            {
+                Console.WriteLine("What is the base?");
+                int baseLength=int.Parse(Console.ReadLine());
+                Console.WriteLine("What is the height?");
+                int height=int.Parse(Console.ReadLine());
+                float result=RectangleArea(baseLength, height);
+                Console.WriteLine($"The area of the rectangle is: {result}");
+            }
+                else
+            {
+                Console.WriteLine("You did not follow direction! Goodbye.");
+            }
+                Console.ReadKey();
         }
-           
+        static float TriangleArea(int baseLength, int height)
+        {
+            return (baseLength * height) / 2;
         }
-        
+        static float SquareArea(int side)
+        {
+            return (side * side);
+        }
+        static float RectangleArea(int baseLength, int height)
+        {
+            return (baseLength * height);
+        }
     }
 }
